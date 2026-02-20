@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Fraud Control</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        :root {
+            --admin-accent: #ff4b2b;
+            --admin-accent-glow: rgba(255, 75, 43, 0.3);
+            --admin-bg-gradient: radial-gradient(circle at bottom right, #1a0b0b, #0f172a);
+        }
+
+        body {
+            background: var(--admin-bg-gradient) !important;
+        }
+
+        .admin-kpi {
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid var(--admin-accent) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            transition: transform 0.3s ease;
+        }
+
+        .admin-kpi:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--admin-accent-glow);
+        }
+
+        #total {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to bottom, #ffffff, #ffc3a0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 15px 0;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+            border-left: 2px solid rgba(255, 75, 43, 0.2) !important;
+        }
+
+        .chart-container h3 {
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--admin-accent);
+            margin-bottom: 25px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--admin-accent);
+            border-radius: 10px;
+        }
+        .dash-header h1 {
+            text-shadow: 0 0 20px rgba(255, 75, 43, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            #total {
+                font-size: 2.5rem;
+            }
+
+            .dashboard-container {
+                padding: 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <header class="dash-header">
+            <div class="ai-badge" style="background: linear-gradient(90deg, #ff4b2b, #ff416c);">System Admin</div>
+            <h1>Internal Control Panel</h1>
+            <p>High-level system overview and transaction volume monitoring.</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card admin-kpi">
+                <span class="stat-label">System-Wide Transactions</span>
+                <h2 id="total">Loading...</h2>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <div class="chart-container full-width">
+                <h3>Transaction Velocity & Performance</h3>
+                <canvas id="adminChart"></canvas>
+            </div>
+        </div>
+
+        <div class="footer-actions">
+            <button class="btn-secondary" onclick="window.location.href='dashboard.html'">
+                View Live Analytics
+            </button>
+        </div>
+    </div>
+
+    <script>
+        fetch("http://127.0.0.1:8000/admin-stats")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("total").innerText = data.total_transactions;
+            });
+    </script>
+</body>
+
+</html>

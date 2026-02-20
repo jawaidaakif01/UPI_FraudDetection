@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AI Fraud Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="glass-container login-card">
+        <header>
+            <div class="ai-badge">Secure Access</div>
+            <h2>Welcome Back</h2>
+            <p>Please enter your credentials to continue</p>
+        </header>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="name@company.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+
+        <button class="btn-primary" onclick="login()">Sign In</button>
+
+        <div class="auth-footer">
+            <p>Protected by AI-Shield Neural Network</p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

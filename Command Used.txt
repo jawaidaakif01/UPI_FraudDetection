@@ -1,0 +1,11 @@
+python -m venv venv
+
+venv\Scripts\activate
+
+pip install -r requirements.txt
+
+python train_model.py
+
+uvicorn main:app --reload
+
+frontend/index.html

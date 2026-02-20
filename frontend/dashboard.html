@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Fraud Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header class="dash-header">
+            <div class="ai-badge">Live Analytics</div>
+            <h1>Fraud Detection Dashboard</h1>
+            <p>Real-time neural network monitoring and risk assessment.</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Transactions</span>
+                <h2 id="totalTx">0</h2>
+            </div>
+            </div>
+
+        <div class="charts-grid">
+            <div class="chart-container">
+                <h3>Risk Distribution</h3>
+                <canvas id="riskChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Hourly Activity</h3>
+                <canvas id="hourChart"></canvas>
+            </div>
+        </div>
+
+        <div class="footer-actions">
+            <button class="btn-secondary" onclick="window.location.href='index.html'">
+                Back to Detection Tool
+            </button>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
