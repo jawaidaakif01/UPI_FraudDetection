@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (!localStorage.getItem("user_email")) {
-        window.location.href = "login.html";
-    }
+    // if (!localStorage.getItem("user_email")) {
+    //     window.location.href = "login.html";
+    // }
 
     const form = document.getElementById("fraudForm");
 

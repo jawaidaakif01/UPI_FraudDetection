@@ -3,38 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | AI Fraud Detection</title>
+    <title>Create Account | FraudGuard AI</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="auth-body">
 
-    <div class="glass-container register-card">
-        <header>
-            <div class="ai-badge">Get Started</div>
-            <h2>Create Account</h2>
-            <p>Join the neural network for secure payments.</p>
-        </header>
+    <div class="auth-container-centered">
+        <div class="auth-card-modern glow-hover">
+            <header class="auth-header">
+                <h2 class="auth-title">Join FraudGuard</h2>
+                <p class="auth-subtitle">Create your profile to start analyzing transactions with AI.</p>
+            </header>
 
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="John Doe" required>
-        </div>
+            <div class="form-stack">
+                <div class="form-group-modern">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="e.g. Rajesh Kumar" required class="input-modern">
+                </div>
 
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="name@company.com" required>
-        </div>
+                <div class="form-group-modern">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="name@company.com" required class="input-modern">
+                </div>
 
-        <div class="form-group">
-            <label for="password">Create Password</label>
-            <input type="password" id="password" placeholder="••••••••" required>
-        </div>
+                <div class="form-group-modern">
+                    <label for="password">Create Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required class="input-modern">
+                </div>
 
-        <button class="btn-primary" onclick="register()">Register Now</button>
+                <button class="btn-primary-lg" onclick="register()">
+                    Create Account
+                </button>
+            </div>
 
-        <div class="auth-footer">
-            <p>Already have an account? <a href="login.html" class="auth-link">Login here</a></p>
+            <div class="auth-footer-modern">
+                <p>Already a member? <a href="login.html" class="link-modern">Sign In here</a></p>
+            </div>
         </div>
     </div>
 

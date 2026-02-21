@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Check | FraudGuard AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⛨Fraud<span>Guard</span></div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">⚡</span> Analyze Payment
+                </a>
+                <a href="link.html" class="nav-item active"> 
+                    <span class="icon">🔗</span> UPI ID Check
+                </a>
+                <a href="spam.html" class="nav-item">
+                    <span class="icon">💬</span> Message Check
+                </a>
+                <a href="report.html" class="nav-item">
+                    <span class="icon">🚩</span> Report Scam
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <span class="icon">🛡️</span> Admin Panel
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout-lg" onclick="logout()">
+                     Sign Out
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="tool-card-wide glow-hover">
+                <header class="auth-header">
+                    <h2 class="auth-title" style="text-align: center;">UPI ID & Link Scanner</h2>
+                    <p class="auth-subtitle" style="text-align: center; color: var(--text-muted);">
+                        Identify fraudulent "Collect Requests" and suspicious VPA handles.
+                    </p>
+                </header>
+
+                <div class="form-stack">
+                    <div class="form-group-modern">
+                        <label>Enter UPI ID / Payment Link</label>
+                        <input type="text" id="upiInput" placeholder="e.g. cashback-winner@okaxis or https://upi-pay.link/.." required class="input-modern">
+                    </div>
+
+                    <div class="safety-tips" style="background: #f0f7ff; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--primary);">
+                        <small style="color: #1e40af; font-weight: 600;">
+                            🛡️ Tip: Fraudsters often use names like "Customer Care" or "Refund Dept" to send fake collect requests.
+                        </small>
+                    </div>
+
+                    <button type="button" onclick="checkUPI()" class="btn-primary-lg" style="width: 100%;">
+                        Verify Identity
+                    </button>
+                </div>
+
+                <div id="upiResult" class="result-display"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="link.js"></script>
+</body>
+</html>
+
+    

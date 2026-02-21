@@ -1,101 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Spam Detector</title>
+    <title>Spam Check | FraudGuard AI</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code:wght@400&display=swap"
-        rel="stylesheet">
-    <style>
-        .spam-card {
-            max-width: 600px;
-            text-align: center;
-            border-top: 3px solid #8e2de2;
-        }
-
-        .input-wrapper {
-            position: relative;
-            margin: 25px 0;
-        }
-
-        textarea {
-            width: 100%;
-            height: 150px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            resize: none;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        textarea:focus {
-            border-color: #8e2de2;
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 20px rgba(142, 45, 226, 0.2);
-        }
-
-        .spam-card .btn-primary {
-            background: linear-gradient(90deg, #8e2de2, #4a00e0);
-            box-shadow: 0 8px 20px rgba(74, 0, 224, 0.3);
-            width: 100%;
-        }
-
-        #spamResult {
-            margin-top: 25px;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-        }
-
-        .result-spam {
-            background: rgba(255, 75, 43, 0.15);
-            color: #ff4b2b;
-            border: 1px solid rgba(255, 75, 43, 0.3);
-        }
-
-        .result-ham {
-            background: rgba(0, 210, 255, 0.15);
-            color: #00d2ff;
-            border: 1px solid rgba(0, 210, 255, 0.3);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+<body class="dashboard-body">
 
-<body>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⛨Fraud<span>Guard</span></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">⚡</span> Analyze Payment
+                </a>
+                <a href="link.html" class="nav-item">
+                    <span class="icon">🔗</span> UPI ID Check
+                </a>
+                <a href="spam.html" class="nav-item active">
+                    <span class="icon">💬</span> Message Check
+                </a>
+                <a href="report.html" class="nav-item">
+                    <span class="icon">🚩</span> Report Scam
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <span class="icon">🛡️</span> Admin Panel
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout-lg" onclick="logout()">
+                    Sign Out
+                </button>
+            </div>
+        </aside>
 
-    <div class="glass-container spam-card">
-        <header>
-            <div class="ai-badge" style="background: linear-gradient(90deg, #8e2de2, #4a00e0);">NLP Engine</div>
-            <h1>Spam Message Detection</h1>
-            <p>Paste SMS, Emails, or UPI notes for instant risk analysis.</p>
-        </header>
+        <main class="main-content">
+            <div class="tool-card-wide glow-hover">
+                <header class="auth-header">
+                    <h2 class="auth-title" style="text-align: center;">Message Analysis</h2>
+                    <p class="auth-subtitle">Scan SMS, Emails, or UPI notes for phishing links and spam patterns.</p>
+                </header>
 
-        <div class="input-wrapper">
-            <textarea id="message"
-                placeholder="e.g. 'Congratulations! You won a cash prize of ₹50,000. Click here to claim...'"></textarea>
-            <div class="glow-border"></div>
-        </div>
+                <div class="form-stack">
+                    <div class="form-group-modern">
+                        <label for="message">Paste Content Below</label>
+                        <textarea id="message" class="input-modern" style="height: 200px; resize: none;" 
+                        placeholder="e.g. 'Your account is blocked. Click here to verify...'"></textarea>
+                    </div>
 
-        <button class="btn-primary" id="spamBtn" onclick="checkSpam()">
-            Analyze Content
-        </button>
+                    <button class="btn-primary-lg" onclick="checkSpam()">
+                        Scan Message for Risks
+                    </button>
+                </div>
 
-        <div id="spamResult"></div>
+                <div id="spamResult" class="result-display"></div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
-
 </html>

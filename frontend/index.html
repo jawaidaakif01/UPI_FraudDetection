@@ -3,92 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI UPI Fraud Detection</title>
+    <title>Scanner | FraudGuard AI</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dashboard-body">
 
-    <div class="glass-container">
-        <header>
-            <div class="ai-badge">AI Powered</div>
-            <h1>UPI Fraud Detection</h1>
-            <p>Enter transaction details to assess security risk.</p>
-        </header>
-
-        <form id="fraudForm">
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Amount (₹)</label>
-                    <input type="number" id="amount" placeholder="e.g. 5000" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Receiver Status</label>
-                    <select id="is_new_receiver">
-                        <option value="0">Existing Receiver</option>
-                        <option value="1">New Receiver</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Request Type</label>
-                    <select id="collect_request">
-                        <option value="0">Direct Payment</option>
-                        <option value="1">Collect Request</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Note Scanning</label>
-                    <select id="suspicious_note">
-                        <option value="0">Normal Note</option>
-                        <option value="1">Suspicious Keywords Found</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Reported Issue</label>
-                    <select id="issue_type">
-                        <option value="Network Error">Network Error</option>
-                        <option value="Incorrect MPIN">Incorrect MPIN</option>
-                        <option value="Invalid UPI ID">Invalid UPI ID</option>
-                        <option value="Beneficiary Not Found">Beneficiary Not Found</option>
-                        <option value="Insufficient Funds">Insufficient Funds</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Sender Bank</label>
-                    <input type="text" id="bank_sender" placeholder="e.g. HDFC Bank" />
-                </div>
-
-                <div class="form-group">
-                    <label>Receiver Bank</label>
-                    <input type="text" id="bank_receiver" placeholder="e.g. SBI" />
-                </div>
-
-                <div class="form-group">
-                    <label>Date & Time</label>
-                    <div class="datetime-row">
-                        <input type="date" id="date" required>
-                        <input type="time" id="time" required>
-                    </div>
-                </div>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⛨Fraud<span>Guard</span></div>
             </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="index.html" class="nav-item active">
+                    <span class="icon">⚡</span> Analyze Payment
+                </a>
+                <a href="link.html" class="nav-item"> 
+                  <span class="icon">🔗</span> UPI ID Check
+                 </a>
+                <a href="spam.html" class="nav-item">
+                    <span class="icon">💬</span> Message Check
+                </a>
+                <a href="report.html" class="nav-item">
+                    <span class="icon">🚩</span> Report Scam
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <span class="icon">🛡️</span> Admin Panel
+                </a>
+            </nav>
 
-            <button type="submit" class="btn-primary">Analyze Risk Score</button>
-        </form>
+            <div class="sidebar-footer">
+                <button class="btn-logout-lg" onclick="logout()">
+                    Sign Out
+                </button>
+            </div>
+        </aside>
 
-        <div id="result"></div>
+        <main class="main-content">
+            <div class="tool-card-wide glow-hover">
+                <header class="auth-header">
+                    <h2 class="auth-title" style="text-align: center;">Verify Transaction</h2>
+                </header>
 
-        <div class="footer-actions">
-            <button class="btn-secondary" onclick="window.location.href='dashboard.html'">
-                Go to Dashboard
-            </button>
-        </div>
+                <form id="fraudForm" class="form-stack">
+                    <div class="form-grid-modern">
+                        <div class="form-group-modern">
+                            <label>Transaction Amount (₹)</label>
+                            <input type="number" id="amount" placeholder="e.g. 5000" required class="input-modern">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Receiver Status</label>
+                            <select id="is_new_receiver" class="input-modern">
+                                <option value="0">Verified Contact</option>
+                                <option value="1">New/Unknown Receiver</option>
+                            </select>
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Sender Bank</label>
+                            <input type="text" id="bank_sender" placeholder="HDFC, SBI..." class="input-modern">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Receiver Bank</label>
+                            <input type="text" id="bank_receiver" placeholder="ICICI, Axis..." class="input-modern">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Date</label>
+                            <input type="date" id="date" required class="input-modern">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Time</label>
+                            <input type="time" id="time" required class="input-modern">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary-lg ">Run AI Risk Analysis</button>
+                </form>
+
+                <div id="result" class="result-display"></div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Simple logout function
+        function logout() {
+            localStorage.removeItem("user_email");
+            localStorage.removeItem("role");
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>

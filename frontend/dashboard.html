@@ -3,46 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Fraud Dashboard</title>
+    <title>Dashboard | FraudGuard AI</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="dashboard-body">
 
-    <div class="dashboard-container">
-        <header class="dash-header">
-            <div class="ai-badge">Live Analytics</div>
-            <h1>Fraud Detection Dashboard</h1>
-            <p>Real-time neural network monitoring and risk assessment.</p>
-        </header>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⛨Fraud<span>Guard</span></div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">⚡</span> Analyze Payment
+                </a>
+                <a href="link.html" class="nav-item">
+                    <span class="icon">🔗</span> UPI ID Check
+                </a>
+                <a href="spam.html" class="nav-item">
+                    <span class="icon">💬</span> Message Check
+                </a>
+                <a href="report.html" class="nav-item">
+                    <span class="icon">🚩</span> Report Scam
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <span class="icon">🛡️</span> Admin Panel
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout-lg" onclick="logout()">
+                    Sign Out
+                </button>
+            </div>
+        </aside>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-label">Total Transactions</span>
-                <h2 id="totalTx">0</h2>
-            </div>
-            </div>
+        <main class="main-content">
+            <div class="dashboard-grid">
+                
+                <div class="tool-card-wide" style="grid-column: span 2; padding: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 style="margin:0;">System Overview</h2>
+                            <p style="margin:5px 0 0 0; color:var(--text-muted);">Real-time monitoring of global threats.</p>
+                        </div>
+                        <div class="stat-badge">
+                            <span id="totalTx">0</span>
+                            <small>Total Analyzed</small>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="charts-grid">
-            <div class="chart-container">
-                <h3>Risk Distribution</h3>
-                <canvas id="riskChart"></canvas>
-            </div>
-            <div class="chart-container">
-                <h3>Hourly Activity</h3>
-                <canvas id="hourChart"></canvas>
-            </div>
-        </div>
+                <div class="tool-card-wide curvy-chart">
+                    <h3>Risk Distribution</h3>
+                    <canvas id="riskChart"></canvas>
+                </div>
 
-        <div class="footer-actions">
-            <button class="btn-secondary" onclick="window.location.href='index.html'">
-                Back to Detection Tool
-            </button>
-        </div>
+                <div class="tool-card-wide curvy-chart">
+                    <h3>Activity Patterns</h3>
+                    <canvas id="hourChart"></canvas>
+                </div>
+
+            </div>
+        </main>
     </div>
 
     <script src="dashboard.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>

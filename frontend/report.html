@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Scam | FraudGuard AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⛨Fraud<span>Guard</span></div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">⚡</span> Analyze Payment
+                </a>
+                <a href="link.html" class="nav-item"> 
+                    <span class="icon">🔗</span> UPI ID Check
+                </a>
+                <a href="spam.html" class="nav-item">
+                    <span class="icon">💬</span> Message Check
+                </a>
+                <a href="report.html" class="nav-item active">
+                    <span class="icon">🚩</span> Report Scam
+                </a>
+                <a href="admin.html" class="nav-item">
+                    <span class="icon">🛡️</span> Admin Panel
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout-lg" onclick="logout()">
+                    Sign Out
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="tool-card-wide glow-hover">
+                <header class="auth-header">
+                    <h2 class="auth-title" style="text-align: center;">Report Fraudulent Activity</h2>
+                    <p class="auth-subtitle" style="text-align: center; color: var(--text-muted);">
+                        Help protect others by reporting suspicious UPI IDs or phishing attempts.
+                    </p>
+                </header>
+
+                <form id="reportForm" class="form-stack">
+                    <div class="form-grid-modern">
+                        <div class="form-group-modern">
+                            <label for="fraud_upi">Fraudulent UPI ID</label>
+                            <input type="text" id="fraud_upi" placeholder="e.g. scammer@upi" required class="input-modern">
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="scam_type">Scam Type</label>
+                            <select id="scam_type" class="input-modern" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="Fake Collect Request">Fake Collect Request</option>
+                                <option value="Phishing Link">Phishing Link</option>
+                                <option value="Lottery Scam">Lottery / Prize Scam</option>
+                                <option value="Impersonation">Customer Care Impersonation</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group-modern" style="grid-column: span 2;">
+                            <label for="description">Description of Incident</label>
+                            <textarea id="description" class="input-modern" style="height: 120px; resize: none;" 
+                            placeholder="Provide details about the scam."></textarea>
+                        </div>
+
+                        <div class="form-group-modern" style="grid-column: span 2;">
+                            <label>Upload Screenshot (Optional)</label>
+                            <input type="file" id="screenshot" class="input-modern" accept="image/*" style="border: 2px dashed #cbd5e1;">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn-primary-lg" style="width: 100%; margin-top: 10px;">
+                        Submit Fraud Report
+                    </button>
+                </form>
+
+                <div id="reportStatus" class="result-display" style="display:none;"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script> <script src="report.js"></script> </body>
+</html>
