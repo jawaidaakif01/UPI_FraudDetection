@@ -56,12 +56,14 @@
                             <input type="number" id="amount" placeholder="e.g. 5000" required class="input-modern">
                         </div>
                         <div class="form-group-modern">
-                            <label>Receiver Status</label>
-                            <select id="is_new_receiver" class="input-modern">
-                                <option value="0">Verified Contact</option>
-                                <option value="1">New/Unknown Receiver</option>
-                            </select>
-                        </div>
+    <label>Transaction / Issue Type</label>
+    <select id="issue_type" class="input-modern" required>
+        <option value="Standard Transfer">Standard Transfer</option>
+        <option value="Invalid UPI ID">Invalid UPI ID</option>
+        <option value="Beneficiary Not Found">Beneficiary Not Found</option>
+        <option value="Multiple Failures">Multiple Failures</option>
+    </select>
+</div>
                         <div class="form-group-modern">
                             <label>Sender Bank</label>
                             <input type="text" id="bank_sender" placeholder="HDFC, SBI..." class="input-modern">

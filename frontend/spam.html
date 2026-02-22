@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body class="dashboard-body">
 
     <div class="layout-wrapper">
@@ -51,8 +53,8 @@
                 <div class="form-stack">
                     <div class="form-group-modern">
                         <label for="message">Paste Content Below</label>
-                        <textarea id="message" class="input-modern" style="height: 200px; resize: none;" 
-                        placeholder="e.g. 'Your account is blocked. Click here to verify...'"></textarea>
+                        <textarea id="message" class="input-modern" style="height: 200px; resize: none;"
+                            placeholder="e.g. 'Your account is blocked. Click here to verify...'"></textarea>
                     </div>
 
                     <button class="btn-primary-lg" onclick="checkSpam()">
@@ -61,6 +63,17 @@
                 </div>
 
                 <div id="spamResult" class="result-display"></div>
+                <button id="askAiBtn"
+                    style="display: none; background-color: #5a4fcf; color: white; padding: 10px 15px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px;">
+                    ✨ Ask AI Why
+                </button>
+
+                <div id="aiExplanationBox"
+                    style="display: none; margin-top: 15px; padding: 15px; background-color: #f8fafc; border-left: 4px solid #5a4fcf; border-radius: 4px;">
+                    <strong>AI Analysis:</strong>
+                    <p id="aiExplanationText" style="margin-top: 8px; font-style: italic; color: #334155;">Loading
+                        explanation...</p>
+                </div>
             </div>
         </main>
     </div>
@@ -73,4 +86,5 @@
         }
     </script>
 </body>
+
 </html>

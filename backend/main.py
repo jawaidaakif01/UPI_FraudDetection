@@ -6,6 +6,15 @@ from datetime import datetime
 import csv
 import os
 from fastapi import HTTPException
+from pydantic import BaseModel
+import pickle
+import xgboost as xgb
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+
+load_dotenv()
 
 app = FastAPI()
 transactions_history = []
@@ -18,8 +27,43 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-spam_model = joblib.load("spam_model.pkl")
-model = joblib.load("fraud_model.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+spam_model = joblib.load(os.path.join(BASE_DIR, "spam_model.pkl"))
+model = joblib.load(os.path.join(BASE_DIR, "fraud_model.pkl"))
+
+# with open(os.path.join(BASE_DIR, "Phishing_link_pkl/url_xgb_model.pkl"), "rb") as f:
+#     url_model = pickle.load(f)
+url_model = xgb.XGBClassifier()
+# Load using pickle, not XGBoost's native loader
+with open(os.path.join(BASE_DIR, "Phishing_link_pkl/updated_model.pkl"), "rb") as f:
+    url_model = pickle.load(f)
+with open(os.path.join(BASE_DIR, "Phishing_link_pkl/tfidf_vectorizer.pkl"), "rb") as f: 
+    url_vectorizer = pickle.load(f)
+with open(os.path.join(BASE_DIR, "Phishing_link_pkl/label_encoder.pkl"), "rb") as f:
+    url_encoder = pickle.load(f)
+
+gemini_model = ChatGoogleGenerativeAI(model='gemini-flash-latest')
+prompt_message = PromptTemplate(
+    template='You are an expert in classifying messages as Spam or Ham. I have built a machine learning model which classifies the message - {message} as {ML_output} with spam probability of {spam_probability}%. Explain to a non-technical person, why the message is classified as {ML_output} in 2 lines.',
+    input_variables=['message', 'ML_output', 'spam_probability']
+)
+parser = StrOutputParser()
+output_chain = prompt_message | gemini_model | parser
+
+
+class URLRequest(BaseModel):
+    url: str
+
+class ExplainRequest(BaseModel):
+    message: str
+    ml_output: str
+    spam_probability: float
+
+@app.get("/")
+def read_root():
+    return {'message':'FraudGuard AI backend is up and running!'}
+
 
 @app.post("/predict")
 def predict(transaction: dict):
@@ -271,3 +315,36 @@ def detect_spam(data: dict):
 
     except Exception as e:
         return {"error": str(e)}
+    
+
+@app.post("/scan-url")
+def scan_url(request: URLRequest):
+    try:
+        import numpy as np
+        target_url = request.url
+        vectorized_url = url_vectorizer.transform([target_url])
+        vectorized_url = vectorized_url.astype(np.float32)
+        numeric_prediction = url_model.predict(vectorized_url)
+        text_label = url_encoder.inverse_transform(numeric_prediction)[0]
+
+        return {
+            "status": "success",
+            "url_scanned": target_url,
+            "threat_type": text_label,
+            "is_safe": True if text_label == "benign" else False
+        }
+
+    except Exception as e:
+        return {"error": str(e)}
+        
+@app.post("/explain-risk")
+def explain_risk(request: ExplainRequest):
+    try:
+        explanation = output_chain.invoke({
+            'message':request.message,
+            'ML_output':request.ml_output,
+            'spam_probability':request.spam_probability
+        })
+        return {'status': 'success', 'explanation':explanation}
+    except Exception as e:
+        return {'error': str(e)}
