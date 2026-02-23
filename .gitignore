@@ -1,0 +1,11 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+Phisihing_Link_dataset/

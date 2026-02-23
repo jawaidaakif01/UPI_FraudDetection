@@ -1,2 +1,4 @@
 id,name,email,password,role
 1,Utkarsh Singh Parihar,us7692334@gmail.com,123,user
+2,AakifDemo,aakifdemo@gmail.com,aakifdemo,user
+3,,,,user
