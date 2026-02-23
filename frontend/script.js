@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    if (!localStorage.getItem("user_email")) {
+        window.location.href = "login.html";
+    }
+
     const form = document.getElementById("fraudForm");
     const askAiBtn = document.getElementById("askAiBtn");
     const aiExplanationBox = document.getElementById("aiExplanationBox");
